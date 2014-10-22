@@ -1,7 +1,7 @@
-// === autoInsertTab.js ===
+// === autoInsertTab.js === http://akelpad.sourceforge.net/forum/viewtopic.php?p=26347#26347
 // (с) Cuprum
 //
-// Если каретка непосредсвенно расположена:
+// Если каретка непосредственно расположена:
 // a) между открывающим и закрывающим тегом в html-файлах
 // б) между открывающей и закрывающей фигурными скобками ({}) в css-, less-, js-файлах,
 // то при нажатии клавиши Enter вместе с переводом на новую строку вставляется символ табуляции.
@@ -92,6 +92,3 @@ if (AkelPad.Include("CoderFunctions.js")) {
 if (hWndFocus) {
 	AkelPad.SendMessage(hWndFocus, 258 /*WM_CHAR*/, 13 /*VK_RETURN*/, 0);
 }
-
-
-
