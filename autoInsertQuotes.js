@@ -1,4 +1,5 @@
 // === [autoInsertQuotes.js] ===
+// http://akelpad.sourceforge.net/forum/viewtopic.php?p=26484#26484
 // https://github.com/cuprum/AkelPad_scripts/blob/master/autoInsertQuotes.js
 //
 // (c) Cuprum  2014
