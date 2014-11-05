@@ -15,11 +15,14 @@
 //    -fileExts="htm, html, php"        - Allows to set custom file extensions. Default is "html, xml".
 //
 // Usage:
-//....Call("Scripts::Main", 1, "autoInsertQuotes.js")
-//....Call("Scripts::Main", 1, "autoInsertQuotes.js",'-singleQuotes')
-//....Call("Scripts::Main", 1, "autoInsertQuotes.js",'-fileExts="htm, html, php" -singleQuotes')
+//    Call("Scripts::Main", 1, "autoInsertQuotes.js")
+//    Call("Scripts::Main", 1, "autoInsertQuotes.js",'-singleQuotes')
+//    Call("Scripts::Main", 1, "autoInsertQuotes.js",'-fileExts="htm, html, php" -singleQuotes')
 //
 // Versions:
+//    1.1 (5.11.2014)
+//      Typing '=' without quotes inside attribute value.
+//
 //    1.0 (1.11.2014)
 //      Initial release.
 
@@ -29,10 +32,11 @@ var hMainWnd = AkelPad.GetMainWnd(),
 	hWndFocus = AkelPad.SendMessage(hMainWnd, 1317 /*AKD_GETFOCUS*/, 0, 0),
 	fileExts = AkelPad.GetArgValue("fileExts", "html, xml"),
 	quotes = "\"\"",
+	LastTagPattern = /<[a-z][^\s>\/]*(?:[^>"']|"[^"]*"|'[^']*')*$/i,
+	attrPattern = /\s+[\-\w]+$/,
 	currentExt,
 	args,
-	textStr,
-	posLastBracket;
+	textStr;
 
 // http://akelpad.sourceforge.net/forum/viewtopic.php?p=11382#11382
 function GetOffset(hWndEdit, nType /*AEGI_*/, nOffset) {
@@ -102,12 +106,9 @@ if (args = AkelPad.GetArgLine()) {
 
 if (fileExts.indexOf(currentExt) >= 0) {
 	textStr = GetTextLineStartToCaret();
-	posLastBracket = textStr.lastIndexOf("<");
 
-	if (posLastBracket >= 0) {
-		if (textStr.indexOf(">", posLastBracket) === -1) {
-			insertQuotes(quotes);
-		}
+	if (LastTagPattern.test(textStr) && attrPattern.test(textStr)) {
+		insertQuotes(quotes);
 	}
 }
 
