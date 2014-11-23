@@ -20,6 +20,9 @@
 //    Call("Scripts::Main", 1, "autoInsertQuotes.js",'-fileExts="htm, html, php" -singleQuotes')
 //
 // Versions:
+//    1.2 (23.11.2014)
+//      Support xml notation in attribute names.
+//
 //    1.1 (5.11.2014)
 //      Typing '=' without quotes inside attribute value.
 //
@@ -32,8 +35,8 @@ var hMainWnd = AkelPad.GetMainWnd(),
 	hWndFocus = AkelPad.SendMessage(hMainWnd, 1317 /*AKD_GETFOCUS*/, 0, 0),
 	fileExts = AkelPad.GetArgValue("fileExts", "html, xml"),
 	quotes = "\"\"",
-	LastTagPattern = /<[a-z][^\s>\/]*(?:[^>"']|"[^"]*"|'[^']*')*$/i,
-	attrPattern = /\s+[\-\w]+$/,
+	LastTagPattern = /<[^\s>\/]+(?:[^>"']|"[^"]*"|'[^']*')*$/i,
+	attrPattern = /\s+[a-z_:][\w\-.:]*$/i,
 	currentExt,
 	args,
 	textStr;
