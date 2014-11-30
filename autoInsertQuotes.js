@@ -36,7 +36,7 @@ var hMainWnd = AkelPad.GetMainWnd(),
 	fileExts = AkelPad.GetArgValue("fileExts", "html, xml"),
 	quotes = "\"\"",
 	LastTagPattern = /<[^\s>\/]+(?:[^>"']|"[^"]*"|'[^']*')*$/i,
-	attrPattern = /\s+[a-z_:][\w\-.:]*$/i,
+	attrPattern = /\s[a-z_:][\w\-.:]*$/i,
 	currentExt,
 	args,
 	textStr;
