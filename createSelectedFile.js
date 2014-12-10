@@ -1,4 +1,5 @@
 // [createSelectedFile.js]
+// http://akelpad.sourceforge.net/forum/viewtopic.php?p=26939#26939 
 // https://github.com/cuprum/AkelPad_scripts/blob/master/createSelectedFile.js
 //
 // Cuprum (c) 2014
