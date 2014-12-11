@@ -1,5 +1,5 @@
 // [createSelectedFile.js]
-// http://akelpad.sourceforge.net/forum/viewtopic.php?p=26939#26939 
+// http://akelpad.sourceforge.net/forum/viewtopic.php?p=26939#26939
 // https://github.com/cuprum/AkelPad_scripts/blob/master/createSelectedFile.js
 //
 // Cuprum (c) 2014
@@ -49,7 +49,7 @@ var localize = function(o) {
 };
 var oScrArgs = {
 		sCurPath: AkelPad.GetArgValue("path", ""),
-		nIsMsg: AkelPad.GetArgValue("msg", 0),
+		nIsConfirmMsg: AkelPad.GetArgValue("msg", 0),
 		sExts: AkelPad.GetArgValue("exts", "js|css|less")
 	};
 
@@ -68,7 +68,7 @@ FileMaker = function(selText, oParams) {
 	this.sCurPath = (oParams.sCurPath || WScript.Quit()).match(rCurPath)[0];
 	this.aSelMatched = selText.match(rSel);
 	this.sNewFilePath = "";
-	this.nIsConfirmMsg = oParams.nIsMsg;
+	this.nIsConfirmMsg = oParams.nIsConfirmMsg;
 	this.bCallConfirmMsg = false;
 	this.sLngFile = oParams.sLngFile;
 	this.sLngCreate = oParams.sLngCreate;
@@ -122,10 +122,10 @@ FileMaker.prototype = {
 			} else {
 				this.showConfirmMsg();
 				this.oFso.CreateFolder(sCurPath);
-				if (AkelPad.IsPluginRunning(pExplorer)) {
-						AkelPad.Call(pExplorer, 2);
-				}
 			}
+		}
+		if (AkelPad.IsPluginRunning(pExplorer)) {
+			AkelPad.Call(pExplorer, 2);
 		}
 	},
 	processing: function(oMatch) {
