@@ -24,7 +24,9 @@
 //    Call("Scripts::Main", 1, "createSelectedFile.js", `-path="%f" -msg -exts="css|js|less|htm|html"`)
 //
 // Versions:
-//    1.0 (11.12.2014)
+//    1.0.1 (28.11.2015)
+//      Fix regexp for file path.
+//    1.0.0 (11.12.2014)
 //      Initial release.
 
 
@@ -61,7 +63,7 @@ if (hWndEdit !== hWndFocus) {
 
 FileMaker = function(selText, oParams) {
 	var exts = oParams.sExts;
-	var rSel = new RegExp("^([^:]*/)?([^\\/:*?]+?\\.(?:" + exts + ")$)", "i");
+	var rSel = new RegExp("^([^\\\\:\"*?<>|\\r\\n]*/)?([^\\\\/:\"*?<>|\\r\\n]+?\\.(?:" + exts + ")$)", "i");
 	var rCurPath = /^.*\\/;
 
 	this.oFso = new ActiveXObject("Scripting.FileSystemObject");
